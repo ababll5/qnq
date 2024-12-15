@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/amazeui.min.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/slider.min.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/slidenav.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/components/notify.gradient.min.css' %}" rel="stylesheet" type="text/css">
+
+<script src="{% static 'js/amazeui.min.js' %}"></script>
+<script src="{% static 'js/components/slider.min.js' %}"></script>
+<script src="{% static 'js/components/notify.min.js' %}"></script>
+<script src="{% static 'lib/jquery.raty.min.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+<div id="detail_html">
+    <ol class="am-breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li class="am-active"> 酒店预订 </li>
+    </ol>
+
+    <div id="detail_content">
+        <div id="detail_slider" data-am-widget="slider" class="am-slider am-slider-c3"
+             data-am-slider='{"controlNav":false}'>
+            <ul class="am-slides">
+                <li>
+                    <img src="/{{ h.pic }}">
+                   
+
+                </li>
+               
+                </ul>
+            </div>
+            <div id="detail_slider_describe">
+                <div style="max-height: 415px">
+                    <h2 >{{ h.title }}</h2>
+                    <div class="countbox">
+                        <div class="c_item">床型：大床房 </div>
+                        <div class="c_item">设施：独立卫生间 、WIFI </div>
+                        <div class="c_item">价格： {{ h.price }} 元/晚 </div>
+                        <form action="/orders" method="post">
+                        <div class="c_item">入驻时间： 
+                            <br>
+                            <input type="date" name='date' value="2020-01-02">
+
+                         </div>
+                        <div class="c_item">天数： <br>
+                            <input type="text" name='num' value="1">  </div>
+                            <input type="hidden" name='hid' value="{{ h.id }}">  
+                            {% csrf_token %}
+                            <div>
+                                <br>
+                           <button class="submit_btn" type="submit"> 立即预定 </button>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+        <div class="clear"></div>
+    </div>
+
+
+</div>
+    
+{% endblock content %}

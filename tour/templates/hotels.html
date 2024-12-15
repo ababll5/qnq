@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/components/slideshow.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/components/slidenav.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/components/dotnav.min.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="{% static 'js/components/slideshow.min.js' %}"></script>
+    <script src="{% static 'js/components/parallax.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div id="tour_content">
+
+        <div class="content_part">
+            <h2  >  酒店预订 </h2>
+            <div class=" guess-like">
+                <ul class=" ui_width" >
+                    {% for g in res %}
+                        <li style="display: inline-block;">
+                            <figure class="uk-overlay uk-overlay-hover city_name">
+                                <img class="small_img" style="width:300px;height:260px;" src="/{{ g.pic }}">
+                                <span class="span_city_name"> {{ g.title }}</span> 
+                                <figcaption
+                                        class="uk-overlay-panel uk-overlay-background uk-overlay-background uk-overlay-slide-top">
+                                    <p>电话：{{ g.tel }} </p>
+                                    <p>地址：{{ g.address }} </p>
+                                    <a class="uk-position-cover"  href="/live?id={{ g.id }}"></a>
+                                </figcaption>
+                            </figure>
+                            <p class="price" >   <span>&yen;{{ g.price }} </span> 起 </p> 
+                           
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- <ul class="img_grid2 ui_width">
+                    {% for g in guess|slice:"5:10" %}
+                        <li>
+                            <figure class="uk-overlay uk-overlay-hover city_name">
+                                <img class="small_img" src="{% static 'images/imgs/' %}{{ g.id }}_1.png">
+                                <span class="span_city_name">{{ g.view_name }}</span>
+                                <figcaption
+                                        class="uk-overlay-panel uk-overlay-background uk-overlay-background uk-overlay-slide-top">
+                                    <p>{{ g.view_desc|truncatechars:28 }}</p>
+                                    <a class="uk-position-cover" href="/detail?id={{ g.id }}"></a>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    {% endfor %}
+                </ul> -->
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+
+.price span{
+    color:#f54545;
+    font-size: 25px;
+    text-align: center;
+}
+</style>
+
+{% endblock content %}

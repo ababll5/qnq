@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+{% block content %}
+<div id="content_search">
+    <div id="search_box" class="cusClearFix">
+<h2> {{res.title}} </h2>
+
+<h4> {{res.author.username}} &emsp;  {{res.time}} </h4>
+
+<p style="font-family: microsoft yahei; font-size: 18px; line-height: 25px;text-indent:35px">
+
+ {{res.content}} 
+
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+</p>
+ </div>
+ </div>
+{% endblock content %}

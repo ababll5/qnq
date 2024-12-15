@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css"/>
+<script src="{% static 'lib/jquery.raty.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="content_search">
+    <div id="search_box" class="cusClearFix">
+        <form action="/food_search">
+            <div id="input_box" class="search_inputbox">
+                <input autocomplete="off" name="word" type="text" class="e_search_input" value="搜索美食描述、城市…"
+                       data-detect-oninput="1">
+            </div>
+            <span class="btn_search" title="搜索" onclick="$('.search_form').submit()" data-beacon="Place_search_button"><span>GO</span></span>
+        </form>
+    </div>
+
+    <div>
+        <ul class="list_ul">
+            {% if foods %}
+            {% for f in foods %}
+            <li class="list_li">
+                <a class="left" href="/food_detail?id={{ f.food_id }}"><img src="{% static 'images/food_imgs/' %}{{ f.food_id }}.png"></a>
+                <div class="sc_info left">
+                    <h2><a href="/food_detail?id={{ f.food_id }}">{{ f.food_name }}</a></h2>
+                    <div class="star{{ forloop.counter }}" ></div>
+                    <div class="d_address"><span class="b">所属区域：</span>{{ f.f_province }}, {{ f.f_city }}, {{ f.food_name }}
+                    </div>
+                    <div class="d_brief"><span class="b">简介：</span>&#8203;{{ f.food_desc|truncatechars:140 }}</div>
+                </div>
+
+                <script>
+                    $('.star{{ forloop.counter }}').raty({path: '{% static 'lib/img' %}', readOnly: true, score: {{ f.food_rate }}})
+                </script>
+
+            </li>
+            {% endfor %}
+            {% else %}
+            <li class="list_li">找不到相关记录</li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+
+
+{% endblock content %}

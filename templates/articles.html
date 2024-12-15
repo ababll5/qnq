@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css"/>
+<script src="{% static 'lib/jquery.raty.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="content_search">
+
+    <div>
+        <ul class="list_ul">
+            {% if res %}
+            {% for v in res %}
+            <li class="list_li">
+              
+                <div class="sc_info left">
+                    <h2><a href="/look?id={{ v.id }}">{{ v.title }}</a></h2>
+                    
+                    <div class="d_address"><span class="b"> {{ v.time }}
+                    </div>
+                    <div class="d_brief"><span class="b">{{ v.content |truncatechars:140  }}</span>&#8203;  
+                     <br>  <br>  {{ v.author.username }} 
+                    </div>
+                </div>
+
+            
+
+            </li>
+            {% endfor %}
+            {% else %}
+            <li class="list_li">找不到相关记录</li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+
+
+{% endblock content %}
+

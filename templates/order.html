@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/slideshow.min.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/slidenav.min.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/dotnav.min.css' %}" rel="stylesheet" type="text/css"/>
+<script src="{% static 'js/components/slideshow.min.js' %}"></script>
+<script src="{% static 'js/components/parallax.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<h2 style="padding-left: 100px;"> 我的预定 </h2>
+
+<div style="padding:10px 100px;">
+
+<table >
+
+<tr>
+    <td>订单编号</td>
+    <td>酒店名称</td>
+    <td>入住时间</td>
+   
+    <td>入住天数</td>
+     <td>总价</td>
+     <td>状态</td>
+</tr>
+
+{%   for it in res %}
+<tr>
+    <td>{{it.id}} </td>
+    <td>{{it.hotel.title}} </td>
+    <td>{{it.date}} </td>
+    
+    <td>{{it.num}} </td>
+    <td>{{it.price}} </td>
+    <td>预订成功 </td>
+</tr>
+{%  endfor %}
+
+
+</table>
+
+</div>
+
+<style>
+
+td{text-align: center; width: 10%;  border:solid #add9c0; border-width:0px 1px 1px 0px; padding:10px 50px;}
+table{border:solid #add9c0; border-width:1px 0px 0px 1px;}
+</style>
+{% endblock content %}

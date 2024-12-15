@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/slideshow.min.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/slidenav.min.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{% static 'css/components/dotnav.min.css' %}" rel="stylesheet" type="text/css"/>
+<script src="{% static 'js/components/slideshow.min.js' %}"></script>
+<script src="{% static 'js/components/parallax.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<form class="uk-form uk-form-stacked" action="/publish/"  method="post" style="margin: 10px auto 380px auto; width:600px">
+     {% csrf_token %}
+    <p style="font-size:16px">发布游记</p>
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="form-s-it">标题</label>
+        <div class="uk-form-controls">
+            <input id="form-s-it" placeholder="标题" name="title" type="text" style="width:600px">
+        </div>
+    </div>
+   
+
+    <div class="uk-form-row">
+        <label class="uk-form-label" for="form-s-it">内容</label>
+        <div class="uk-form-controls">
+            <textarea placeholder="内容" type="text" name="content" rows="30" style="width:600px"></textarea> 
+        </div>
+    </div>
+
+    <a href="#" class="uk-button submit-btn" onclick="$('.uk-form').submit()" style="margin-top:15px">发布</a>
+
+</form>
+
+{% endblock content %}
